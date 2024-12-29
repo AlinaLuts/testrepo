@@ -1,0 +1,28 @@
+import string
+
+text_to_encrypt = 'Alina'
+caesar_key = 18
+
+
+def caesar_decrypt(text, key, direction=-1):
+    text = text.lower()
+    alphabet = string.ascii_lowercase
+    ciphertext = ''
+    for char in text:
+        if char.isalpha():
+            index = alphabet.find(char)
+            new_index = (index + key * direction) % len(alphabet)
+            ciphertext += alphabet[new_index]
+        else:
+            ciphertext += char
+    return ciphertext
+
+
+def caesar_encrypt(text, key):
+    return caesar_decrypt(text, key, 1)
+
+
+enc_text = caesar_encrypt(text_to_encrypt, caesar_key)
+print(f'Зашифрований текст: {enc_text}')
+dec_text = caesar_decrypt(enc_text, caesar_key)
+print(f'Дешифрований текст: {dec_text}')
